@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
 import shortid from 'shortid';
 
@@ -11,6 +12,13 @@ class MessageDisplay extends React.Component {
       username: this.props.username,
       messages: []
     };
+    this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+
+  scrollToBottom() {
+    // https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
+    const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
   componentDidMount() {
@@ -22,6 +30,10 @@ class MessageDisplay extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   componentWillUnmount() {
     this.props.socket.off('chat message');
   }
@@ -31,7 +43,7 @@ class MessageDisplay extends React.Component {
     const { messages } = this.state;
     console.log('rendering chat messages', messages);
     return (
-      <div>
+      <div className='messageDisplay' ref={(el) => this.messagesContainer = el} >
         <ul>
           {messages.map((message) => (
             <Message

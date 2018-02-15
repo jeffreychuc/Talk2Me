@@ -49,7 +49,7 @@ class ChatWindow extends React.Component {
       });
     }
   }
-  
+
   handleChange(e) {
     this.setState({ username: e.currentTarget.value });
   }
@@ -62,17 +62,17 @@ class ChatWindow extends React.Component {
         socket={this.props.socket}
       />
     ) : (
-        <ChatRegistration
-          registerUser={this.registerUser}
-          errors={errors}
-        />
-      );
+      <ChatRegistration
+        registerUser={this.registerUser}
+        errors={errors}
+      />
+    );
   }
 
   render() {
     console.log('rendering chat');
     return (
-      <div>
+      <div className='chatContainer'>
         {this.renderChat()}
       </div>
     );

@@ -1,3 +1,32 @@
 .mainChats {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.chatContainer  {
+  height: calc(100vh - 200px);
+  min-height: 500px;
+  width: calc(100vw - 400px);
+  max-width: calc(100vw / 2.5);
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  border: 1px black solid;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatInterface  {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: 50px;
+  flex-direction: column;
+}
+
+.messageDisplay {
+  height: 800px;
+  width: 550px;
+  overflow: scroll;
 }

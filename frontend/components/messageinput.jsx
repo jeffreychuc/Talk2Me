@@ -36,7 +36,7 @@ class MessageInput extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='messageInput'>
         <form onSubmit={this.handleSubmit}>
           <input
             type='text'

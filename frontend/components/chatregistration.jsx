@@ -29,15 +29,6 @@ class ChatRegistration extends React.Component {
     console.log(errors);
     return (
       <div className='usernameInput'>
-        <div className='userRegistrationErrors'>
-          <ul>
-            {errors.map((error) =>
-              <li key={shortid()}>
-                {error}
-              </li>
-            )}
-          </ul>
-        </div>
         <div>
           <form onSubmit={this.handleSubmit}>
             <input 
@@ -48,6 +39,15 @@ class ChatRegistration extends React.Component {
             />
             <input type="submit" value="Submit" />
           </form>
+        </div>
+        <div className='userRegistrationErrors'>
+          <ul>
+            {errors.map((error) =>
+              <li key={shortid()}>
+                {error}
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     );

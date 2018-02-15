@@ -1,5 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
+
 import ChatWindow from './chatwindow';
 
 // needed for two distinct socket instances
