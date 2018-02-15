@@ -9,7 +9,7 @@ const socket1 = io();
 class Root extends React.Component {
   render() {
     return (
-      <div>
+      <div className='mainChats'>
         <ChatWindow socket={socket0}/>
         <ChatWindow socket={socket1}/>
       </div>

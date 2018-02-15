@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import shortid from 'shortid';
 
+import Message from './message';
+
 class MessageDisplay extends React.Component {
   constructor(props) {
     super(props);
@@ -32,14 +34,11 @@ class MessageDisplay extends React.Component {
       <div>
         <ul>
           {messages.map((message) => (
-            <div>
-              <li key={shortid()}>
-                {message.username}
-              </li>
-              <li key={shortid()}>
-                {message.message}
-              </li>
-            </div>
+            <Message
+              username={this.props.username}
+              key={shortid()} 
+              message={message}
+            />
           ))}
         </ul>
       </div>
