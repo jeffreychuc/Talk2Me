@@ -1,4 +1,8 @@
 import React from 'react';
+import axios from 'axios';
+
+import ChatRegistration from './chatregistration';
+import ChatInterface from './chatinterface';
 
 class ChatWindow extends React.Component {
   constructor(props) {
@@ -6,9 +10,11 @@ class ChatWindow extends React.Component {
     this.state = {
       loggedIn: false,
       username: '',
+      id: '',
       displayErrors: false,
       errors: []
     };
+    this.registerUser = this.registerUser.bind(this);
   }
 
   registerUser(username) {
@@ -66,8 +72,7 @@ class ChatWindow extends React.Component {
     console.log('rendering chat');
     return (
       <div>
-        {/* {this.renderChat()} */}
-        hello
+        {this.renderChat()}
       </div>
     );
   }
