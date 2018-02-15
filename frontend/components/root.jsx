@@ -1,13 +1,17 @@
 import React from 'react';
 import io from 'socket.io-client';
+import ChatWindow from './chatwindow';
 
-const socket = io();
+// needed for two distinct socket instances
+const socket0 = io();
+const socket1 = io();
 
 class Root extends React.Component {
   render() {
     return (
       <div>
-        React is working
+        <ChatWindow socket={socket0}/>
+        <ChatWindow socket={socket1}/>
       </div>
     );
   }
