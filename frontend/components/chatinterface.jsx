@@ -1,5 +1,6 @@
 import React from 'react';
 
+import MessageDisplay from './messagedisplay';
 import MessageInput from './messageinput';
 
 class ChatInterface extends React.Component {
@@ -14,6 +15,7 @@ class ChatInterface extends React.Component {
     const { username } = this.props;
     return (
       <div className='chatInterface'>
+        <MessageDisplay username={username} socket={this.props.socket} />
         <MessageInput username={username} socket={this.props.socket} />
       </div>
     );
