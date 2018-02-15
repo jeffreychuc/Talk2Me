@@ -59,6 +59,7 @@ class ChatWindow extends React.Component {
     return loggedIn ? (
       <ChatInterface
         username={username}
+        socket={this.props.socket}
       />
     ) : (
         <ChatRegistration
