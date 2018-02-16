@@ -3,30 +3,54 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  min-width: 800px;
 }
 
 .chatContainer  {
-  height: calc(100vh - 200px);
-  min-height: 500px;
-  width: calc(100vw - 400px);
-  max-width: calc(100vw / 2.5);
-  margin-left: 10px;
-  margin-right: 10px;
-  display: flex;
   border: 1px black solid;
-  justify-content: center;
-  align-items: center;
+  height: 600px;
+  width: 500px;
+  min-height: 600px;
+  min-width: 500px;
+
+  .chatInterface  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    padding-top: 20px;
+    height: 100%;
+
+    .messageDisplay {
+      height: 510px;
+      overflow-y: scroll;
+      padding-top: 20px;
+    }
+
+    .messageInput {
+      display: flex;
+      
+      form {
+        display:flex;
+        width: 100%;
+        padding-bottom: 10px;
+        $input-height: 40px;
+        input:nth-of-type(1) {
+          flex: 20;
+          height: $input-height;
+        }
+
+        input:nth-of-type(2) {
+          flex: 4;
+          margin-left: 10px;
+          height: $input-height;
+        }
+      }
+    }
+  }
 }
 
-.chatInterface  {
-  display: flex;
-  margin-top: auto;
-  margin-bottom: 50px;
-  flex-direction: column;
-}
 
-.messageDisplay {
-  height: 800px;
-  width: 550px;
-  overflow: scroll;
-}
+
+
+
