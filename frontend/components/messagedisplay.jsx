@@ -27,7 +27,7 @@ class MessageDisplay extends React.Component {
       messages.push(msg);
       this.setState({ messages });
       console.log('state should be updating');
-    })
+    });
   }
 
   componentDidUpdate() {
@@ -38,16 +38,19 @@ class MessageDisplay extends React.Component {
     this.props.socket.off('chat message');
   }
 
-
   render() {
     const { messages } = this.state;
-    console.log('rendering chat messages', messages);
+    // console.log('rendering chat messages', messages);
+    // console.log('LKDJLASKJDLSKJDLKSJALKDJLSAKJDLAKSJLK');
+    
+    console.log(Object.keys(this.props.avatars), 'avatarsss');
     return (
       <div className='messageDisplay' ref={(el) => this.messagesContainer = el} >
         <ul>
           {messages.map((message) => (
             <Message
-              username={this.props.username}
+              username={message.username}
+              avatar={this.props.avatars[message.username]}
               key={shortid()} 
               message={message}
             />

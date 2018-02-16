@@ -9,17 +9,24 @@ class MessageDisplay extends React.Component {
   render() {
     console.log(this.props.message);
     const { username, message, timestamp } = this.props.message;
+    const avatarString = "data:image/png;base64," + this.props.avatar;
     return (this.props.username === username) ? 
       (
-        <li>
-          {username + ': ' + message}
-        </li>
+        <div>
+          <img width={50} height={50} src={avatarString} />
+          <li>
+            {username + ': ' + message}
+          </li>
+        </div>
       )
       : 
       (
-        <li>
-          {message + ' :' + username}
-        </li>
+        <div>
+          <li>
+            {message + ' :' + username}
+          </li>
+          <img width={50} height={50} src={avatarString} />
+        </div>
       );
   }
 }

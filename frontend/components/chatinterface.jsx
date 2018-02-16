@@ -13,10 +13,10 @@ class ChatInterface extends React.Component {
 
   render() {
     console.log('rendering chatInterface');
-    const { username } = this.props;
+    const { username, avatars } = this.props;
     return (
       <div className='chatInterface'>
-        <MessageDisplay username={username} socket={this.props.socket} />
+        <MessageDisplay username={username} avatars={avatars} socket={this.props.socket} />
         <NowTypingDisplay username={username} socket={this.props.socket} />
         <MessageInput username={username} socket={this.props.socket} />
       </div>

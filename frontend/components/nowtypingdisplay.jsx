@@ -38,7 +38,7 @@ class NowTypingDisplay extends React.Component {
     const { currentlyTyping } = this.state;
     const currentUser = currentlyTyping.indexOf(this.props.username);
     if (currentlyTyping.length === 0) {
-      return '';
+      return '\n';
     }
     let nowTypingString = '';
     if (currentlyTyping.length > 1) {
@@ -53,9 +53,9 @@ class NowTypingDisplay extends React.Component {
 
   render() {
     return (
-      <p>
+      <div>
         {this.generateNowTypingString()}
-      </p>
+      </div>
     );
   }
 }

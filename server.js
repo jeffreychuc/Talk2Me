@@ -2,8 +2,11 @@ const app = require('express')();
 const express = require('express');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-
 const bodyParser = require('body-parser');
+const crypto = require('crypto');
+const Identicon = require('identicon.js');
+
+
 // https://stackoverflow.com/questions/11625519/how-to-access-the-request-body-when-posting-using-node-js-and-express
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -12,6 +15,7 @@ app.use(bodyParser.urlencoded({
 // https://stackoverflow.com/questions/24330014/bodyparser-is-deprecated-express-4
 
 let clients = {};
+let avatars = {};
 
 app.use(express.static('public'));
 
@@ -30,8 +34,11 @@ app.post('/login', function (req, res) {
     console.log('new user');
     console.log('adding username to clients object');
     clients[id] = username;
-    console.log(clients);
-    res.send({ 'status': 200, username: username });
+    let avatar = crypto.createHash('md5').update(username).digest("hex");
+    avatars[username] = new Identicon(avatar).toString();
+    console.log(avatars);
+    res.send({ 'status': 200, username: username, avatars: avatars });
+    io.emit('updating avatars', avatars);
   }
 });
 
@@ -45,6 +52,11 @@ io.on('connection', function (socket) {
     console.log(msg);
     io.emit('chat message', msg);
   });
+
+  // socket.on('new user', function () {
+  //   console.log('sending new avatars');
+  //   io.emit('updating avatars', avatars);
+  // });
 
   socket.on('now typing', function (username) {
     // console.log('chat message', msg);
@@ -65,7 +77,9 @@ io.on('connection', function (socket) {
       if (error) throw error;
       console.log(connectedClients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD] currently connected clients
       let disconnectClient = Object.keys(clients).filter((client) => !connectedClients.includes(client))[0];
+      let disconnectClientName = clients[disconnectClient];
       delete clients[disconnectClient];
+      delete avatars[disconnectClientName];
       console.log('connected clients are now', clients);
     });
   });

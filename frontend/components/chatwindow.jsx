@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import isEqual from 'lodash/isequal';
+
 
 import ChatRegistration from './chatregistration';
 import ChatInterface from './chatinterface';
@@ -11,10 +13,20 @@ class ChatWindow extends React.Component {
       loggedIn: false,
       username: '',
       id: '',
+      avatars: {},
       displayErrors: false,
       errors: []
     };
     this.registerUser = this.registerUser.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.socket.on('updating avatars', (avatars) => {
+      if (!isEqual(this.state.avatars, avatars)) {
+        console.log('updating avatars');
+        this.setState({ avatars });
+      }
+    });
   }
 
   registerUser(username) {
@@ -36,7 +48,7 @@ class ChatWindow extends React.Component {
         if (res.data.status === 200) {
           console.log('user registered and logged in');
           console.log(res.data);
-          this.setState({ username: res.data.username, id: this.props.socket.id, loggedIn: true });
+          this.setState({ username: res.data.username, avatars: res.data.avatars, id: this.props.socket.id, loggedIn: true });
           // console.log('state should have been set');
         }
         else {
@@ -55,11 +67,13 @@ class ChatWindow extends React.Component {
   }
 
   renderChat() {
-    const { loggedIn, username, errors } = this.state;
+    const { loggedIn, username, avatars, errors } = this.state;
+    console.log(avatars);
     return loggedIn ? (
       <ChatInterface
         username={username}
         socket={this.props.socket}
+        avatars={avatars}
       />
     ) : (
       <ChatRegistration
