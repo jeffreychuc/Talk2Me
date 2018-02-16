@@ -10,15 +10,25 @@ class MessageInput extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTypeingID = null;
   }
 
   handleChange(e) {
     console.log('handling change on text input area');
+    
+    clearTimeout(this.handleTypeingID);
+    this.props.socket.emit('now typing', {username: this.props.username});
+    this.handleTypeingID = setTimeout(() => this.props.socket.emit('stopped typing', {username: this.props.username}), 4000);
+    
     this.setState({ messageText: e.currentTarget.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    
+    clearTimeout(this.handleTypeingID);
+    this.props.socket.emit('stopped typing', { username: this.props.username });
+
     const { messageText } = this.state;
     const { username } = this.props;
 

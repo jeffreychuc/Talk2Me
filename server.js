@@ -46,6 +46,18 @@ io.on('connection', function (socket) {
     io.emit('chat message', msg);
   });
 
+  socket.on('now typing', function (username) {
+    // console.log('chat message', msg);
+    console.log(username, ' started typing');
+    io.emit('now typing', username);
+  });
+
+  socket.on('stopped typing', function (username) {
+    // console.log('chat message', msg);
+    console.log(username, ' stopped typing');
+    io.emit('stopped typing', username);
+  });
+
   socket.on('disconnect', function () {
     console.log('user disconnected');
     // code below from https://socket.io/docs/server-api/

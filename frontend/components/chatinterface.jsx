@@ -2,6 +2,7 @@ import React from 'react';
 
 import MessageDisplay from './messagedisplay';
 import MessageInput from './messageinput';
+import NowTypingDisplay from './nowtypingdisplay';
 
 class ChatInterface extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class ChatInterface extends React.Component {
     return (
       <div className='chatInterface'>
         <MessageDisplay username={username} socket={this.props.socket} />
+        <NowTypingDisplay username={username} socket={this.props.socket} />
         <MessageInput username={username} socket={this.props.socket} />
       </div>
     );
