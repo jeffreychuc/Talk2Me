@@ -6,6 +6,17 @@
   min-width: 800px;
 }
 
+.topBar{
+  width: 500px;
+  height: 20px;
+  background: red;
+  cursor: pointer;
+}
+
+.spacer {
+  width: 20px;
+}
+
 .chatContainer  {
   border: 1px black solid;
   height: 600px;
@@ -13,7 +24,7 @@
   min-height: 600px;
   min-width: 500px;
   font-family: 'Noto Sans', sans-serif;
-
+  background: white;
 
   .chatInterface  {
     display: flex;

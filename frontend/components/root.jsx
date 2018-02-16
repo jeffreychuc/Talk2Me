@@ -1,5 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
+import Draggable from 'react-draggable';
+
 
 import ChatWindow from './chatwindow';
 
@@ -11,8 +13,25 @@ class Root extends React.Component {
   render() {
     return (
       <div className='mainChats'>
-        <ChatWindow socket={socket0}/>
-        <ChatWindow socket={socket1}/>
+        <Draggable handle="strong">
+          <div className="box no-cursor">
+            <strong className="cursor">
+              <div className='topBar' />
+            </strong>
+            <ChatWindow socket={socket0} />
+          </div>
+        </Draggable>
+
+        <div className='spacer' />
+
+        <Draggable handle="strong">
+          <div className="box no-cursor">
+            <strong className="cursor">
+              <div className='topBar' />
+            </strong>
+            <ChatWindow socket={socket1} />
+          </div>
+        </Draggable>
       </div>
     );
   }
