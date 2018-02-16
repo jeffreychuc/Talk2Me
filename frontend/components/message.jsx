@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-class MessageDisplay extends React.Component {
+class Message extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,7 @@ class MessageDisplay extends React.Component {
     const avatarString = "data:image/png;base64," + this.props.avatar;
     return (this.props.username === username) ? 
       (
-        <div>
+        <div className='singleMessage'>
           <img width={50} height={50} src={avatarString} />
           <li>
             {username + ': ' + message}
@@ -21,7 +21,7 @@ class MessageDisplay extends React.Component {
       )
       : 
       (
-        <div>
+        <div className='singleMessage other'>
           <li>
             {message + ' :' + username}
           </li>
@@ -31,4 +31,4 @@ class MessageDisplay extends React.Component {
   }
 }
 
-export default MessageDisplay;
+export default Message;

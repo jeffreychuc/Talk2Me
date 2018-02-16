@@ -53,11 +53,6 @@ io.on('connection', function (socket) {
     io.emit('chat message', msg);
   });
 
-  // socket.on('new user', function () {
-  //   console.log('sending new avatars');
-  //   io.emit('updating avatars', avatars);
-  // });
-
   socket.on('now typing', function (username) {
     // console.log('chat message', msg);
     console.log(username, ' started typing');

@@ -12,6 +12,8 @@
   width: 500px;
   min-height: 600px;
   min-width: 500px;
+  font-family: 'Noto Sans', sans-serif;
+
 
   .chatInterface  {
     display: flex;
@@ -25,6 +27,19 @@
       height: 510px;
       overflow-y: scroll;
       padding-top: 20px;
+      
+      ul {
+        list-style-type: none;
+        padding-left: 5px;
+      }
+
+      .singleMessage{
+        display: flex;
+        margin-bottom: 10px;
+        &.other {
+          justify-content: flex-end;
+        }
+      }
     }
 
     .messageInput {

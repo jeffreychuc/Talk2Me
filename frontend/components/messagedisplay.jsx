@@ -49,7 +49,7 @@ class MessageDisplay extends React.Component {
         <ul>
           {messages.map((message) => (
             <Message
-              username={message.username}
+              username={this.props.username}
               avatar={this.props.avatars[message.username]}
               key={shortid()} 
               message={message}

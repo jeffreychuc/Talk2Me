@@ -7,8 +7,6 @@ import NowTypingDisplay from './nowtypingdisplay';
 class ChatInterface extends React.Component {
   constructor(props) {
     super(props);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
@@ -19,6 +17,9 @@ class ChatInterface extends React.Component {
         <MessageDisplay username={username} avatars={avatars} socket={this.props.socket} />
         <NowTypingDisplay username={username} socket={this.props.socket} />
         <MessageInput username={username} socket={this.props.socket} />
+        <div>
+          Logged in as {username}
+        </div>
       </div>
     );
   }
