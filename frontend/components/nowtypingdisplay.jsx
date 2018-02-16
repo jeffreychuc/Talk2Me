@@ -14,7 +14,7 @@ class NowTypingDisplay extends React.Component {
       console.log(username);
       let { currentlyTyping } = this.state;
       let { username }  = user;
-      if (!currentlyTyping.includes(username)) {
+      if (!currentlyTyping.includes(username) && username !== this.props.username) {
         currentlyTyping.unshift(username);
         this.setState({ currentlyTyping });
       }
@@ -36,6 +36,7 @@ class NowTypingDisplay extends React.Component {
 
   generateNowTypingString() {
     const { currentlyTyping } = this.state;
+    const currentUser = currentlyTyping.indexOf(this.props.username);
     if (currentlyTyping.length === 0) {
       return '';
     }
