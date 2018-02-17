@@ -10,7 +10,7 @@ Talk to me is a real time web chat app.
 
 ## Usernames and Avatars
 ![login](login.gif)
-Be who you want to be, we'll generate an avatar on who you are.
+Be who you want to be, we'll generate an avatar based on your name.
 
 ## Moving Windows
 ![movingwindows](moving-windows.gif)
@@ -20,7 +20,7 @@ Rearrange your workspace!
 ![newwindow](new-window.gif)
 Why only limit yourself to two chats!
 
-The following technologies were used to build this project:
+## The following technologies were used to build this project:
 
 [Node.js](https://nodejs.org/)
 
