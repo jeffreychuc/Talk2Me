@@ -80,7 +80,7 @@ class MessageDisplay extends React.Component {
           {messages.map((message) => {
             if (message.notification) {
               return (
-                        <li>
+                        <li className='disconnectMessage'>
                           {message.username} has disconnected
                         </li>
                       )

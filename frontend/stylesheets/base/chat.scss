@@ -152,6 +152,12 @@
       overflow-y: scroll;
       border-radius: 6px;
 
+      .disconnectMessage {
+        color: gray;
+        margin-bottom: 15px;
+        font-size: 13px;
+      }
+
       div.singleMessage + li.singleMessage.contMessage {
         margin-top: 0;
       }
