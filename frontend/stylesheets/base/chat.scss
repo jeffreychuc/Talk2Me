@@ -8,6 +8,10 @@
   justify-content: center;
   height: 100vh;
   min-width: 800px;
+  // https://uigradients.com/#MidnightCity
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #232526, #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .topBar{
@@ -52,6 +56,11 @@
       border: 1px solid lightgray;
       border-radius: 4px;
       
+      .welcomeText {
+        color: gray;
+        margin-bottom: 10px;
+        font-size: 13px;
+      }
       
       ul {
         list-style-type: none;
@@ -61,8 +70,45 @@
       .singleMessage{
         display: flex;
         margin-bottom: 10px;
+        
+        .messageBody {
+          display: flex;
+          flex-direction: column;
+          .username {
+            font-weight: bold;
+            display: flex;
+
+            .timestamp {
+              font-size: 13px;
+              font-weight: lighter;
+              color: #8c8c8c;
+              margin-top: 3px;
+              margin-left: 5px;
+            }
+
+          }
+        }
+        
+        li {
+          margin-left: 10px;
+        }
+
         &.other {
           justify-content: flex-end;
+          li {
+            margin-right: 10px;
+            text-align: right;
+          }
+
+          .username {
+            .timestamp {
+              font-size: 13px;
+              font-weight: lighter;
+              color: #8c8c8c;
+              margin-top: 3px;
+              margin-right: 5px;
+            }
+          }
         }
         img {
           border-radius: 2px;
@@ -72,7 +118,8 @@
 
     .messageInput {
       display: flex;
-      
+      border-radius: 3px;
+
       form {
         display:flex;
         width: 100%;
@@ -80,6 +127,7 @@
         $input-height: 40px;
         input:nth-of-type(1) {
           flex: 20;
+          padding-left: 5px;
           height: $input-height;
         }
 

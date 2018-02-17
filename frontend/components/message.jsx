@@ -14,17 +14,33 @@ class Message extends React.Component {
       (
         <div className='singleMessage'>
           <img width={50} height={50} src={avatarString} />
-          <li>
-            {username + ': ' + message}
-          </li>
+          <div className='messageBody'>
+            <li className='username'>
+              {username}
+              <div className='timestamp'>
+                {moment(timestamp).format('h:mm a')}
+              </div>
+            </li>
+            <li>
+              {message}
+            </li>
+          </div>
         </div>
       )
       : 
       (
         <div className='singleMessage other'>
-          <li>
-            {message + ' :' + username}
-          </li>
+          <div className='messageBody'>
+            <li className='username'>
+              <div className='timestamp'>
+                {moment(timestamp).format('h:mm a')}
+              </div>
+              {username}
+            </li>
+            <li>
+              {message}
+            </li>
+          </div>
           <img width={50} height={50} src={avatarString} />
         </div>
       );

@@ -13,6 +13,10 @@ class MessageInput extends React.Component {
     this.handleTypeingID = null;
   }
 
+  componentDidMount() {
+    this.messageInput.focus();
+  }
+
   handleChange(e) {
     console.log('handling change on text input area');
     
@@ -37,7 +41,7 @@ class MessageInput extends React.Component {
       const messagePayload = {
         message: messageText,
         username: username,
-        timestamp: moment().unix()
+        timestamp: Date.now()
       };
       this.props.socket.emit('chat message', messagePayload);
       this.setState({ messageText: '' });
@@ -52,6 +56,7 @@ class MessageInput extends React.Component {
             type='text'
             value={this.state.messageText}
             onChange={this.handleChange}
+            ref={(input) => { this.messageInput = input; }} 
           />
           <input type="submit" value="Submit" />
         </form>

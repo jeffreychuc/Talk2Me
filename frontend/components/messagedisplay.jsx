@@ -38,6 +38,18 @@ class MessageDisplay extends React.Component {
     this.props.socket.off('chat message');
   }
 
+  welcomeMessage() {
+    let peopleOnline = Object.keys(this.props.avatars).length;
+    let peoplePlural = ['are', 'people'];
+    if (peopleOnline === 1) {
+      peoplePlural = ['is', 'person'];
+    }
+    return (
+            <li className='welcomeText'>
+              Welcome to Talk2Me, there {peoplePlural[0]} currently {peopleOnline} {peoplePlural[1]} online
+            </li>
+            );
+  }
   render() {
     const { messages } = this.state;
     // console.log('rendering chat messages', messages);
@@ -47,6 +59,7 @@ class MessageDisplay extends React.Component {
     return (
       <div className='messageDisplay' ref={(el) => this.messagesContainer = el} >
         <ul>
+          {this.welcomeMessage()}
           {messages.map((message) => (
             <Message
               username={this.props.username}
