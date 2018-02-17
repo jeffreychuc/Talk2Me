@@ -28,26 +28,31 @@ class ChatRegistration extends React.Component {
     let { errors } = this.props;
     console.log(errors);
     return (
-      <div className='usernameInput'>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              type='text'
-              value = {this.state.username}
-              placeholder='Enter Your Username'
-              onChange={this.handleChange}
-            />
-            <input type="submit" value="Submit" />
-          </form>
+      <div className='registrationSplash'>
+        <div className='registrationHeader'>
+          Welcome to Talk2Me
         </div>
-        <div className='userRegistrationErrors'>
-          <ul>
-            {errors.map((error) =>
-              <li key={shortid()}>
-                {error}
-              </li>
-            )}
-          </ul>
+        <div className='usernameInput'>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <input 
+                type='text'
+                value = {this.state.username}
+                placeholder='Enter Your Username'
+                onChange={this.handleChange}
+              />
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+          <div className='userRegistrationErrors'>
+            <ul>
+              {errors.map((error) =>
+                <li key={shortid()}>
+                  {error}
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     );

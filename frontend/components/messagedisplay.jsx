@@ -26,7 +26,7 @@ class MessageDisplay extends React.Component {
       let { messages } = this.state;
       messages.push(msg);
       this.setState({ messages });
-      console.log('state should be updating');
+      // console.log('state should be updating');
     });
   }
 
@@ -45,10 +45,10 @@ class MessageDisplay extends React.Component {
       peoplePlural = ['is', 'person'];
     }
     return (
-            <li className='welcomeText'>
-              Welcome to Talk2Me, there {peoplePlural[0]} currently {peopleOnline} {peoplePlural[1]} online
-            </li>
-            );
+      <li className='welcomeText'>
+        Welcome to Talk2Me, there {peoplePlural[0]} currently {peopleOnline} {peoplePlural[1]} online.
+      </li>
+    );
   }
   render() {
     const { messages } = this.state;

@@ -36,7 +36,7 @@ app.post('/login', function (req, res) {
     clients[id] = username;
     let avatar = crypto.createHash('md5').update(username).digest("hex");
     avatars[username] = new Identicon(avatar).toString();
-    console.log(avatars);
+    // console.log(avatars);
     res.send({ 'status': 200, username: username, avatars: avatars });
     io.emit('updating avatars', avatars);
   }
@@ -64,21 +64,23 @@ io.on('connection', function (socket) {
     console.log(username, ' stopped typing');
     io.emit('stopped typing', username);
   });
+  
+  socket.on('wtf', ()=> console.log('it worked...'));
 
   socket.on('disconnect', function () {
     console.log('user disconnected');
     // code below from https://socket.io/docs/server-api/
     io.clients((error, connectedClients) => {
       if (error) throw error;
-      console.log(connectedClients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD] currently connected clients
+      // console.log(connectedClients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD] currently connected clients
       let disconnectClient = Object.keys(clients).filter((client) => !connectedClients.includes(client))[0];
       let disconnectClientName = clients[disconnectClient];
       delete clients[disconnectClient];
       delete avatars[disconnectClientName];
-      console.log('connected clients are now', clients);
+      io.emit('updating avatars', avatars);
+      // console.log('connected clients are now', clients);
     });
   });
-
 });
 
 http.listen(3000, function () {

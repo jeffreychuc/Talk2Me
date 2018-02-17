@@ -1,31 +1,60 @@
 import React from 'react';
 import io from 'socket.io-client';
+import shortid from 'shortid';
 import Draggable from 'react-draggable';
 
-
 import ChatWindow from './chatwindow';
-
-// needed for two distinct socket instances
-const socketArray = [];
 
 class Root extends React.Component {
   constructor(props) {
     super(props);
-    let socketArray = [];
-    for (let i = 0; i < 2; i++) {
-      socketArray.push(io());
-    }
-    console.log(socketArray);
-    this.state={ socketArray };
+    
     this.renderChatInstance = this.renderChatInstance.bind(this);
+    this.removeChatInstance = this.removeChatInstance.bind(this);
+    this.addChatInstance = this.addChatInstance.bind(this);
+
+    // let socketArray = [];
+    let socketHash = {};
+    for (let i = 0; i < 2; i++) {
+      // socketArray.push(this.renderChatInstance(io(), i));
+      let socket = io();
+      // console.log(socket);
+      // debugger;
+      let id = shortid();
+      socketHash[id] = this.renderChatInstance(socket, id);
+    }
+    // console.log(socketArray);
+    this.state = { socketHash };
   }
 
-  renderChatInstance(socket) {
+  removeChatInstance(socket, i) {
+    let { socketHash } = this.state;
+    delete socketHash[i];
+    socket.disconnect();
+    this.setState({ socketHash });
+  }
+
+  addChatInstance() {
+    // let { socketArray } = this.state;
+    // socketArray.push(this.renderChatInstance(io(), socketArray.length));
+    // this.setState({ socketArray });
+    let { socketHash } = this.state;
+    let socket = io();
+    let id = shortid();
+    socketHash[id] = this.renderChatInstance(socket, id);
+    this.setState({ socketHash })
+  }
+
+  renderChatInstance(socket, i) {
     return (
-      <Draggable handle="strong">
+      <Draggable key={shortid()} handle="strong">
         <div className="box no-cursor">
           <strong className="cursor">
-            <div className='topBar' />
+            <div className='topBar' >
+              <button onClick={() => this.removeChatInstance(socket, i)}>
+                <i className="fas fa-times" />
+              </button>
+            </div>
           </strong>
           <ChatWindow socket={socket} />
         </div>
@@ -34,30 +63,15 @@ class Root extends React.Component {
   }
   
   render() {
-    let { socketArray } = this.state;
+    let { socketHash } = this.state;
     return (
-      <div className='mainChats'>
-        {socketArray.map((socket) => this.renderChatInstance(socket))}
-        {/* <Draggable handle="strong">
-          <div className="box no-cursor">
-            <strong className="cursor">
-              <div className='topBar' />
-            </strong>
-            <ChatWindow socket={socket0} />
-          </div>
-        </Draggable>
-
-        <div className='spacer' />
-
-        <Draggable handle="strong">
-          <div className="box no-cursor">
-            <strong className="cursor">
-              <div className='topBar' />
-            </strong>
-            <ChatWindow socket={socket1} />
-          </div>
-        </Draggable> */}
-
+      <div>
+        <div className='addChatWindowButton'>
+          <button onClick={() => this.addChatInstance()}>Add Chat Window </button>
+        </div>
+        <div className='mainChats'>
+          {Object.keys(socketHash).map((key) => socketHash[key])}
+        </div>
       </div>
     );
   }
