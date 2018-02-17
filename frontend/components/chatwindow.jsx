@@ -15,7 +15,8 @@ class ChatWindow extends React.Component {
       id: '',
       avatars: {},
       displayErrors: false,
-      errors: []
+      errors: [],
+      clients: 0
     };
     this.registerUser = this.registerUser.bind(this);
   }
@@ -23,10 +24,16 @@ class ChatWindow extends React.Component {
   componentDidMount() {
     this.props.socket.on('updating avatars', (avatars) => {
       if (!isEqual(this.state.avatars, avatars)) {
-        console.log('updating avatars');
+        // console.log('updating avatars');
         this.setState({ avatars });
       }
     });
+
+    this.props.socket.on('clients count', (clients) => {
+      console.log('should be setting state for clients number');
+      this.setState({ clients });
+    });
+
   }
 
   registerUser(username) {
@@ -46,9 +53,9 @@ class ChatWindow extends React.Component {
       const { id } = this.props.socket;
       axios.post('/login', { username, id }).then((res) => {
         if (res.data.status === 200) {
-          console.log('user registered and logged in');
-          console.log(res.data);
-          this.setState({ username: res.data.username, avatars: res.data.avatars, id: this.props.socket.id, loggedIn: true });
+          // console.log('user registered and logged in');
+          // console.log(res.data);
+          this.setState({ username: res.data.username, avatars: res.data.avatars, id: this.props.socket.id, loggedIn: true, clients: res.data.clients });
           // console.log('state should have been set');
         }
         else {
@@ -67,13 +74,14 @@ class ChatWindow extends React.Component {
   }
 
   renderChat() {
-    const { loggedIn, username, avatars, errors } = this.state;
-    console.log(avatars);
+    const { loggedIn, username, avatars, errors, clients } = this.state;
+    // console.log(avatars);
     return loggedIn ? (
       <ChatInterface
         username={username}
         socket={this.props.socket}
         avatars={avatars}
+        clients={clients}
       />
     ) : (
       <ChatRegistration

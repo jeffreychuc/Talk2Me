@@ -26,47 +26,51 @@ app.get('/', function (req, res) {
 app.post('/login', function (req, res) {
   const { username, id } = req.body;
   if (Object.values(clients).includes(username)) {
-    console.log(clients);
-    console.log('username in clients');
+    // console.log(clients);
+    // console.log('username in clients');
     res.send({ 'status': 500 });
   }
   else {
-    console.log('new user');
-    console.log('adding username to clients object');
+    // console.log('new user');
+    // console.log('adding username to clients object');
     clients[id] = username;
+    console.log(clients);
     let avatar = crypto.createHash('md5').update(username).digest("hex");
     avatars[username] = new Identicon(avatar).toString();
     // console.log(avatars);
-    res.send({ 'status': 200, username: username, avatars: avatars });
+    // console.log('emitting clients count');
+    // console.log(Object.keys(clients).length);
+    io.emit('clients count', Object.keys(clients).length);
+    res.send({ 'status': 200, username: username, avatars: avatars, clients: Object.keys(clients).length });
     io.emit('updating avatars', avatars);
   }
 });
 
 // socket.io connection and listeners
 io.on('connection', function (socket) {
-  console.log('a user connected');
-  console.log(socket.id, '\n');
+  // console.log('a user connected');
+  // console.log(socket.id, '\n');
   
   socket.on('chat message', function (msg) {
     // console.log('chat message', msg);
-    console.log(msg);
+    // console.log(msg);
     io.emit('chat message', msg);
   });
 
   socket.on('now typing', function (username) {
     // console.log('chat message', msg);
-    console.log(username, ' started typing');
+    // console.log(username, ' started typing');
     io.emit('now typing', username);
   });
 
   socket.on('stopped typing', function (username) {
     // console.log('chat message', msg);
-    console.log(username, ' stopped typing');
+    // console.log(username, ' stopped typing');
     io.emit('stopped typing', username);
   });
 
   socket.on('disconnect', function () {
-    console.log('user disconnected');
+    // console.log('user disconnected');
     // code below from https://socket.io/docs/server-api/
     io.clients((error, connectedClients) => {
       if (error) throw error;
@@ -74,6 +78,8 @@ io.on('connection', function (socket) {
       let disconnectClient = Object.keys(clients).filter((client) => !connectedClients.includes(client))[0];
       let disconnectClientName = clients[disconnectClient];
       delete clients[disconnectClient];
+      console.log(Object.keys(clients).length);
+      io.emit('clients count', Object.keys(clients).length);
       io.emit('client disconnected', disconnectClientName);
     });
   });

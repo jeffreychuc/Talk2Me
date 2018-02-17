@@ -18,7 +18,7 @@ class MessageInput extends React.Component {
   }
 
   handleChange(e) {
-    console.log('handling change on text input area');
+    // console.log('handling change on text input area');
     
     clearTimeout(this.handleTypeingID);
     this.props.socket.emit('now typing', {username: this.props.username});
@@ -37,7 +37,7 @@ class MessageInput extends React.Component {
     const { username } = this.props;
 
     if (messageText.length !== 0) {
-      console.log('should be emitting a message to the server for relay back to all clients');
+      // console.log('should be emitting a message to the server for relay back to all clients');
       const messagePayload = {
         message: messageText,
         username: username,

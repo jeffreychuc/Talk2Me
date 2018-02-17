@@ -56,7 +56,7 @@ class MessageDisplay extends React.Component {
   }
 
   welcomeMessage() {
-    let peopleOnline = Object.keys(this.props.avatars).length;
+    let peopleOnline = this.props.clients;
     let peoplePlural = ['are', 'people'];
     if (peopleOnline === 1) {
       peoplePlural = ['is', 'person'];
@@ -72,7 +72,7 @@ class MessageDisplay extends React.Component {
     // console.log('rendering chat messages', messages);
     // console.log('LKDJLASKJDLSKJDLKSJALKDJLSAKJDLAKSJLK');
     
-    console.log(Object.keys(this.props.avatars), 'avatarsss');
+    // console.log(Object.keys(this.props.avatars), 'avatarsss');
     return (
       <div className='messageDisplay' ref={(el) => this.messagesContainer = el} >
         <ul>
@@ -80,7 +80,7 @@ class MessageDisplay extends React.Component {
           {messages.map((message) => {
             if (message.notification) {
               return (
-                        <li className='disconnectMessage'>
+                        <li key={shortid()} className='disconnectMessage'>
                           {message.username} has disconnected
                         </li>
                       )

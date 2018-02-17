@@ -18,15 +18,15 @@ class ChatRegistration extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { username } = this.state;
-    console.log('a username was submitted');
-    console.log(username);
+    // console.log('a username was submitted');
+    // console.log(username);
     this.props.registerUser(username);
   }
 
   render() {
-    console.log('rendering chatRegistration');
+    // console.log('rendering chatRegistration');
     let { errors } = this.props;
-    console.log(errors);
+    // console.log(errors);
     return (
       <div className='registrationSplash'>
         <div className='registrationHeader'>
