@@ -35,7 +35,9 @@ class Message extends React.Component {
               <div className='timestamp'>
                 {moment(timestamp).format('h:mm a')}
               </div>
-              {username}
+              <div>
+                {username}
+              </div>
             </li>
             <li>
               {message}
