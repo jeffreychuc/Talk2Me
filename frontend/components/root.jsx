@@ -67,7 +67,7 @@ class Root extends React.Component {
     return (
       <div>
         <div className='addChatWindowButton'>
-          <button onClick={() => this.addChatInstance()}>Add Chat Window </button>
+          <button onClick={() => this.addChatInstance()}> add chat window </button>
         </div>
         <div className='mainChats'>
           {Object.keys(socketHash).map((key) => socketHash[key])}

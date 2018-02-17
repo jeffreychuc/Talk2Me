@@ -64,8 +64,6 @@ io.on('connection', function (socket) {
     console.log(username, ' stopped typing');
     io.emit('stopped typing', username);
   });
-  
-  socket.on('wtf', ()=> console.log('it worked...'));
 
   socket.on('disconnect', function () {
     console.log('user disconnected');
@@ -76,12 +74,7 @@ io.on('connection', function (socket) {
       let disconnectClient = Object.keys(clients).filter((client) => !connectedClients.includes(client))[0];
       let disconnectClientName = clients[disconnectClient];
       delete clients[disconnectClient];
-      io.emit('client disconnected', disconnectClient);
-      // deleting avatars breaks images
-      // delete avatars[disconnectClientName];
-      // io.emit('updating avatars', avatars);
-      
-      // console.log('connected clients are now', clients);
+      io.emit('client disconnected', disconnectClientName);
     });
   });
 });

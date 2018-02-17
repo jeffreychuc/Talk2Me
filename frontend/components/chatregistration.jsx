@@ -30,7 +30,7 @@ class ChatRegistration extends React.Component {
     return (
       <div className='registrationSplash'>
         <div className='registrationHeader'>
-          Welcome to Talk2Me
+          <span>welcome to</span><br/>Talk2Me
         </div>
         <div className='usernameInput'>
           <div>
@@ -41,7 +41,6 @@ class ChatRegistration extends React.Component {
                 placeholder='Enter Your Username'
                 onChange={this.handleChange}
               />
-              {/* <input type="submit" value="Submit" /> */}
             </form>
           </div>
           <div className='userRegistrationErrors'>

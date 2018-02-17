@@ -1,6 +1,7 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
 }
 
 .registrationSplash {
@@ -12,11 +13,47 @@
   justify-content: center;
   
   .registrationHeader {
-    font-size: 40px;
+    font-size: 60px;
     margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.2;
+    font-weight: bolder;
+    color: #3fefad;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    span {
+      letter-spacing: 6px;
+      color: gray;
+      font-size: 20px;
+      font-weight: normal;
+    }
   }
-}
 
+  .usernameInput {
+      form {
+        input {
+          padding: 20px;
+          background: #F7F7F4;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          text-align: center;
+          cursor: pointer;
+          color: rgb(119, 119, 119);
+        }
+        input:hover {
+          border: 1px solid #3fefad;
+        }
+
+        input:focus {
+          border: 1px solid #3fefad;
+          background: white;
+          outline: 0;
+        }
+      }
+    }
+  }
 
 .box {
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
@@ -25,16 +62,24 @@
   position: absolute;
   right: 50px;
   top: 50px;
-  font-family: 'Noto Sans', sans-serif;
   button {
-    background: #636363;
-    border-radius: 2px;
+    background: white;
+    border-radius: 6px;
     width: auto;
-    height: 40px;
-    font-size: 23px;
-    font-weight: lighter;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    color: gray;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px 50px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
   }
+
+  button:hover {
+    color: rgb(109, 231, 230);
+    transform: scale(1.03);
+  }
+
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -54,20 +99,23 @@
 .topBar{
   width: 500px;
   height: 20px;
-  background: rgb(99, 99, 99);
+  background: white;
+  border-bottom: 1px solid lightgray;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  border-top: 2px solid black;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
   cursor: pointer;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 20px;
+  align-items: center;
   button {
+    color: #d4d4d3;
     float: right;
     border: none;
     cursor: pointer;
   }
   button:hover {
-    color: rgb(224, 98, 86);
+    color: #ff0043;
   }
 }
 
@@ -76,47 +124,39 @@
 }
 
 .chatContainer  {
-  border: 1px black solid;
+  // border: 1px black solid;
   height: 600px;
   width: 500px;
   min-height: 600px;
   min-width: 500px;
-  font-family: 'Noto Sans', sans-serif;
   background: white;
-
-  .registrationSplash {
-    .usernameInput {
-      form {
-        input {
-          border: none;
-          text-align: center;
-          border-bottom: 1px solid black;
-        }
-      }
-    }
-  }
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 
   .chatInterface  {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 20px;
     height: 100%;
-    padding-left: 25px;
-    padding-bottom: 20px;
+    padding: 30px;
+    padding-top: 15px;
 
     .messageDisplay {
       height: 510px;
       overflow-y: scroll;
-      /* padding-top: 20px; */
-      padding-left: 10px;
-      padding-right: 10px;
-      border: 1px solid lightgray;
-      border-radius: 4px;
+      border-radius: 6px;
       
+      .contMessage {
+        padding-left: 60px;
+        color: dimgray;
+        &.other {
+          padding-right: 60px;
+        }
+      }
+
       .welcomeText {
         color: gray;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         font-size: 13px;
       }
       
@@ -127,14 +167,16 @@
 
       .singleMessage{
         display: flex;
-        margin-bottom: 10px;
-        
+        margin-top: 10px;
+        color: dimgrey;
+
         .messageBody {
           display: flex;
           flex-direction: column;
           .username {
             font-weight: bold;
             display: flex;
+            padding-bottom: 6px;
 
             .timestamp {
               font-size: 13px;
@@ -164,19 +206,19 @@
               font-weight: lighter;
               color: #8c8c8c;
               margin-top: 3px;
-              margin-right: 5px;
+              margin-right: 8px;
             }
           }
         }
         img {
-          border-radius: 2px;
+          border-radius: 6px;
         }
       }
     }
 
     .messageInput {
       display: flex;
-      border-radius: 3px;
+      border-radius: 6px;
 
       form {
         display:flex;
@@ -185,18 +227,37 @@
         $input-height: 40px;
         input:nth-of-type(1) {
           flex: 20;
-          padding-left: 5px;
-          height: $input-height;
-          // border: none;
-          // text-align: center;
-          // border-bottom: 1px solid black;
+          padding: 20px;
+          background: #F7F7F4;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          color: rgb(119, 119, 119);
+
+          &:hover {
+            border: 1px solid #3fefad;
+          }
+
+          &:focus {
+            outline: 0;
+            border: 1px solid #3fefad;
+            background-color: white;
+          }
         }
 
         input:nth-of-type(2) {
-          flex: 4;
+          flex: 8;
           margin-left: 10px;
-          height: $input-height;
-          
+          background: #3fefad;
+          color: white;
+          font-weight: bolder;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          outline: 0;
+          transition: ease-in-out 0.2s;
+        }
+        input:nth-of-type(2):hover {
+          background: #28fec6;
         }
       }
     }

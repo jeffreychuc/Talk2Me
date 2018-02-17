@@ -24,6 +24,13 @@ class MessageDisplay extends React.Component {
   componentDidMount() {
     this.props.socket.on('chat message', (msg) => {
       let { messages } = this.state;
+      if ((messages.length > 0) && (msg.username === messages[messages.length - 1].username))  {
+        msg = {
+          continues: true,
+          message: msg.message,
+          username: msg.username
+        }
+      }
       messages.push(msg);
       this.setState({ messages });
       // console.log('state should be updating');
@@ -72,7 +79,20 @@ class MessageDisplay extends React.Component {
           {this.welcomeMessage()}
           {messages.map((message) => {
             if (message.notification) {
-              return (<li>{message.username} has disconnected</li>)
+              return (
+                        <li>
+                          {message.username} has disconnected
+                        </li>
+                      )
+            }
+            if (message.continues) {
+              return (
+                      <li 
+                        key={shortid()} 
+                  className={this.props.username === message.username ? 'singleMessage contMessage' : 'singleMessage contMessage other'}>
+                        {message.message}
+                      </li>
+                      );
             }
             return (
               <Message

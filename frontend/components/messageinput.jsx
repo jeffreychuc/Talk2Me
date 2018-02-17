@@ -58,7 +58,7 @@ class MessageInput extends React.Component {
             onChange={this.handleChange}
             ref={(input) => { this.messageInput = input; }} 
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="send" />
         </form>
       </div>
     );
