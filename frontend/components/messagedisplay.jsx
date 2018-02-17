@@ -79,11 +79,14 @@ class MessageDisplay extends React.Component {
           {this.welcomeMessage()}
           {messages.map((message) => {
             if (message.notification) {
-              return (
-                        <li key={shortid()} className='disconnectMessage'>
-                          {message.username} has disconnected
-                        </li>
-                      )
+              if (message.username) {
+                return (
+                          <li key={shortid()} className='disconnectMessage'>
+                            {message.username} has disconnected
+                          </li>
+                        )
+              }
+              return null;
             }
             if (message.continues) {
               return (
