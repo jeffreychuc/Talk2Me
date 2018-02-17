@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "node server.js"
+    "start": "node index.js",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
   },
   "keywords": [],
   "author": "",
