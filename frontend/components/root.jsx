@@ -12,7 +12,8 @@ class Root extends React.Component {
     this.renderChatInstance = this.renderChatInstance.bind(this);
     this.removeChatInstance = this.removeChatInstance.bind(this);
     this.addChatInstance = this.addChatInstance.bind(this);
-
+    this.setZIndex = this.setZIndex.bind(this);
+    this.windowRefs = {};
     // let socketArray = [];
     let socketHash = {};
     for (let i = 0; i < 2; i++) {
@@ -45,12 +46,24 @@ class Root extends React.Component {
     this.setState({ socketHash })
   }
 
+  setZIndex(i) {
+    console.log(this.windowRefs);
+    Object.keys(this.windowRefs).forEach((refKey) => {
+      if (refKey === i) {
+        this.windowRefs[refKey].className = this.windowRefs[refKey].className + ' active';
+      }
+      else {
+        this.windowRefs[refKey].className = this.windowRefs[refKey].className.replace('active', '');
+      }
+    })
+  }
+
   renderChatInstance(socket, i) {
     return (
       <Draggable key={shortid()} handle="strong">
-        <div className="box no-cursor">
+        <div className="box no-cursor" ref={(el) => { this.windowRefs[i] = el; }} >
           <strong className="cursor">
-            <div className='topBar' >
+            <div className='topBar' onClick={() => this.setZIndex(i)} >
               <button onClick={() => this.removeChatInstance(socket, i)}>
                 <i className="fas fa-times" />
               </button>
