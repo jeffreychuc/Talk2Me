@@ -41,7 +41,7 @@ class ChatRegistration extends React.Component {
                 placeholder='Enter Your Username'
                 onChange={this.handleChange}
               />
-              <input type="submit" value="Submit" />
+              {/* <input type="submit" value="Submit" /> */}
             </form>
           </div>
           <div className='userRegistrationErrors'>

@@ -10,6 +10,11 @@
   align-content: center;
   height: 100%;
   justify-content: center;
+  
+  .registrationHeader {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 
@@ -40,9 +45,10 @@
   height: 100vh;
   min-width: 800px;
   // https://uigradients.com/#MidnightCity
-  background: #232526; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #232526, #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #0cebeb; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .topBar{
@@ -77,6 +83,18 @@
   min-width: 500px;
   font-family: 'Noto Sans', sans-serif;
   background: white;
+
+  .registrationSplash {
+    .usernameInput {
+      form {
+        input {
+          border: none;
+          text-align: center;
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+  }
 
   .chatInterface  {
     display: flex;
@@ -169,12 +187,16 @@
           flex: 20;
           padding-left: 5px;
           height: $input-height;
+          // border: none;
+          // text-align: center;
+          // border-bottom: 1px solid black;
         }
 
         input:nth-of-type(2) {
           flex: 4;
           margin-left: 10px;
           height: $input-height;
+          
         }
       }
     }

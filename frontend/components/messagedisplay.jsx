@@ -28,6 +28,16 @@ class MessageDisplay extends React.Component {
       this.setState({ messages });
       // console.log('state should be updating');
     });
+
+    this.props.socket.on('client disconnected', (username) => {
+      let { messages } = this.state;
+      let message = {
+        notification: true,
+        username: username
+      };
+      messages.push(message);
+      this.setState({messages});
+    });
   }
 
   componentDidUpdate() {
@@ -60,14 +70,19 @@ class MessageDisplay extends React.Component {
       <div className='messageDisplay' ref={(el) => this.messagesContainer = el} >
         <ul>
           {this.welcomeMessage()}
-          {messages.map((message) => (
-            <Message
-              username={this.props.username}
-              avatar={this.props.avatars[message.username]}
-              key={shortid()} 
-              message={message}
-            />
-          ))}
+          {messages.map((message) => {
+            if (message.notification) {
+              return (<li>{message.username} has disconnected</li>)
+            }
+            return (
+              <Message
+                username={this.props.username}
+                avatar={this.props.avatars[message.username]}
+                key={shortid()} 
+                message={message}
+              />
+            )
+          })}
         </ul>
       </div>
     );

@@ -29,14 +29,6 @@ class ChatWindow extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    this.props.socket.emit('disconnect');
-    this.props.socket.emit('whatthefuck');
-    console.log('the chat window unmounted');
-    console.log('a disconnect should have been sent from');
-    console.log(this.props.socket.emit);
-  }
-
   registerUser(username) {
     let errors = [];
     // set error state if username is blank

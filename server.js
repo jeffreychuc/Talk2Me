@@ -76,8 +76,11 @@ io.on('connection', function (socket) {
       let disconnectClient = Object.keys(clients).filter((client) => !connectedClients.includes(client))[0];
       let disconnectClientName = clients[disconnectClient];
       delete clients[disconnectClient];
-      delete avatars[disconnectClientName];
-      io.emit('updating avatars', avatars);
+      io.emit('client disconnected', disconnectClient);
+      // deleting avatars breaks images
+      // delete avatars[disconnectClientName];
+      // io.emit('updating avatars', avatars);
+      
       // console.log('connected clients are now', clients);
     });
   });
