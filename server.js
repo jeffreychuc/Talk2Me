@@ -40,6 +40,7 @@ app.post('/login', function (req, res) {
     // console.log(avatars);
     // console.log('emitting clients count');
     // console.log(Object.keys(clients).length);
+    io.emit('client change', {username: username, status: 'joined'});
     io.emit('clients count', Object.keys(clients).length);
     res.send({ 'status': 200, username: username, avatars: avatars, clients: Object.keys(clients).length });
     io.emit('updating avatars', avatars);
@@ -80,7 +81,7 @@ io.on('connection', function (socket) {
       delete clients[disconnectClient];
       // console.log(Object.keys(clients).length);
       io.emit('clients count', Object.keys(clients).length);
-      io.emit('client disconnected', disconnectClientName);
+      io.emit('client change', {username: disconnectClientName, status: 'disconnected'});
     });
   });
 });
