@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import isEqual from 'lodash/isequal';
+import isEqual from 'lodash/isEqual';
 
 
 import ChatRegistration from './chatregistration';
