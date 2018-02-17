@@ -67,7 +67,7 @@ class Root extends React.Component {
         <div className={className} onClick={() => this.setZIndex(id)} ref={(el) => { this.windowRefs[id] = el; }} >
           <strong className="cursor">
             <div className='topBar' >
-              <button onClick={() => this.removeChatInstance(socket, id)}>
+              <button onClick={(e) => { e.preventDefault(); this.removeChatInstance(socket, id) }}>
                 <i className="fas fa-times" />
               </button>
             </div>
