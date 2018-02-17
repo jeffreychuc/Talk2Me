@@ -11,7 +11,7 @@ class NowTypingDisplay extends React.Component {
   componentDidMount() {
     // on typing listener
     this.props.socket.on('now typing', (user) => {
-      console.log(username);
+      // console.log(username);
       let { currentlyTyping } = this.state;
       let { username }  = user;
       if (!currentlyTyping.includes(username) && username !== this.props.username) {
@@ -22,10 +22,10 @@ class NowTypingDisplay extends React.Component {
 
     // stopped typing listener
     this.props.socket.on('stopped typing', (user) => {
-      console.log(username);
+      // console.log(username);
       let { currentlyTyping } = this.state;
       let { username } = user;
-      console.log(username, 'stopped typing');
+      // console.log(username, 'stopped typing');
       let removalIndex = currentlyTyping.indexOf(username);
       if (removalIndex >= 0)  {
         currentlyTyping.splice(removalIndex,1);

@@ -30,7 +30,7 @@ class ChatWindow extends React.Component {
     });
 
     this.props.socket.on('clients count', (clients) => {
-      console.log('should be setting state for clients number');
+      // console.log('should be setting state for clients number');
       this.setState({ clients });
     });
 
@@ -40,7 +40,7 @@ class ChatWindow extends React.Component {
     let errors = [];
     // set error state if username is blank
     if (username.length === 0) {
-      errors.push('Username Can\'t be blank!');
+      errors.push('        Username Can\'t be blank!');
       this.setState({
         displayErrors: true,
         errors: errors
@@ -59,7 +59,7 @@ class ChatWindow extends React.Component {
           // console.log('state should have been set');
         }
         else {
-          errors.push('Username is already taken! Pick another one.');
+          errors.push('Username is already taken!');
           this.setState({
             displayErrors: true,
             errors: errors
@@ -92,7 +92,7 @@ class ChatWindow extends React.Component {
   }
 
   render() {
-    console.log('rendering chat');
+    // console.log('rendering chat');
     return (
       <div className='chatContainer'>
         {this.renderChat()}

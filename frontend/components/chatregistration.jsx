@@ -43,15 +43,15 @@ class ChatRegistration extends React.Component {
               />
             </form>
           </div>
-          <div className='userRegistrationErrors'>
-            <ul>
-              {errors.map((error) =>
-                <li key={shortid()}>
-                  {error}
-                </li>
-              )}
-            </ul>
-          </div>
+        </div>
+        <div className='userRegistrationErrors'>
+          <ul>
+            {errors.map((error) =>
+              <li key={shortid()}>
+                {error}
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     );

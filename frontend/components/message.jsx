@@ -7,7 +7,7 @@ class Message extends React.Component {
   }
 
   render() {
-    console.log(this.props.message);
+    // console.log(this.props.message);
     const { username, message, timestamp } = this.props.message;
     const avatarString = "data:image/png;base64," + this.props.avatar;
     return (this.props.username === username) ? 

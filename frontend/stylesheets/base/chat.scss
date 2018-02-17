@@ -31,6 +31,18 @@
     }
   }
 
+  .userRegistrationErrors {
+    position: absolute;
+    bottom: 100px;
+    left: 115px;
+    color: red;
+    ul {
+      list-style: none;
+      text-align: center;
+      margin: auto;
+    }
+  }
+
   .usernameInput {
       form {
         input {

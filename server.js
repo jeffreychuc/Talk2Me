@@ -34,7 +34,7 @@ app.post('/login', function (req, res) {
     // console.log('new user');
     // console.log('adding username to clients object');
     clients[id] = username;
-    console.log(clients);
+    // console.log(clients);
     let avatar = crypto.createHash('md5').update(username).digest("hex");
     avatars[username] = new Identicon(avatar).toString();
     // console.log(avatars);
@@ -78,7 +78,7 @@ io.on('connection', function (socket) {
       let disconnectClient = Object.keys(clients).filter((client) => !connectedClients.includes(client))[0];
       let disconnectClientName = clients[disconnectClient];
       delete clients[disconnectClient];
-      console.log(Object.keys(clients).length);
+      // console.log(Object.keys(clients).length);
       io.emit('clients count', Object.keys(clients).length);
       io.emit('client disconnected', disconnectClientName);
     });

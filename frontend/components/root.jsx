@@ -47,13 +47,15 @@ class Root extends React.Component {
   }
 
   setZIndex(i) {
-    console.log(this.windowRefs);
+    // console.log(this.windowRefs);
     Object.keys(this.windowRefs).forEach((refKey) => {
-      if (refKey === i) {
-        this.windowRefs[refKey].className = this.windowRefs[refKey].className + ' active';
-      }
-      else {
-        this.windowRefs[refKey].className = this.windowRefs[refKey].className.replace('active', '');
+      if (this.windowRefs[refKey]) {
+        if (refKey === i) {
+            this.windowRefs[refKey].className = this.windowRefs[refKey].className + ' active';
+        }
+        else {
+          this.windowRefs[refKey].className = this.windowRefs[refKey].className.replace('active', '');
+        }
       }
     })
   }
