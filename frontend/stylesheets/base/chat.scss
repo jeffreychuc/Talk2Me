@@ -1,3 +1,7 @@
+.box {
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+}
+
 .mainChats {
   display: flex;
   align-items: center;
@@ -9,7 +13,12 @@
 .topBar{
   width: 500px;
   height: 20px;
-  background: red;
+  background: rgb(99, 99, 99);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-top: 2px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
   cursor: pointer;
 }
 
@@ -37,7 +46,12 @@
     .messageDisplay {
       height: 510px;
       overflow-y: scroll;
-      padding-top: 20px;
+      /* padding-top: 20px; */
+      padding-left: 10px;
+      padding-right: 10px;
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      
       
       ul {
         list-style-type: none;
@@ -49,6 +63,9 @@
         margin-bottom: 10px;
         &.other {
           justify-content: flex-end;
+        }
+        img {
+          border-radius: 2px;
         }
       }
     }
@@ -73,10 +90,22 @@
         }
       }
     }
+    
+    .loggedInStatus {
+      font-size: 13px;
+      color: #928c8c;
+    }
+
+    .nowTyping  {
+      height: 30px;
+      color: gray;
+      font-size: 15px;
+      margin-top: 5px;
+    }
   }
 }
 
-
-
-
-
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

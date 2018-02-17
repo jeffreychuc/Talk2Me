@@ -53,7 +53,7 @@ class NowTypingDisplay extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='nowTyping'>
         {this.generateNowTypingString()}
       </div>
     );

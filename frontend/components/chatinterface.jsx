@@ -17,7 +17,7 @@ class ChatInterface extends React.Component {
         <MessageDisplay username={username} avatars={avatars} socket={this.props.socket} />
         <NowTypingDisplay username={username} socket={this.props.socket} />
         <MessageInput username={username} socket={this.props.socket} />
-        <div>
+        <div className='loggedInStatus'>
           Logged in as {username}
         </div>
       </div>
