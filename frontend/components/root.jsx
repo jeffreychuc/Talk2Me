@@ -63,9 +63,9 @@ class Root extends React.Component {
   renderChatInstance(socket, i) {
     return (
       <Draggable key={shortid()} handle="strong">
-        <div className="box no-cursor" ref={(el) => { this.windowRefs[i] = el; }} >
+        <div className="box no-cursor" onClick={() => this.setZIndex(i)} ref={(el) => { this.windowRefs[i] = el; }} >
           <strong className="cursor">
-            <div className='topBar' onClick={() => this.setZIndex(i)} >
+            <div className='topBar' >
               <button onClick={() => this.removeChatInstance(socket, i)}>
                 <i className="fas fa-times" />
               </button>
