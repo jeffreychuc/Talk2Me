@@ -1,6 +1,6 @@
 # Talk2Me
 
-[live](talk2me.jchuc.me)
+[live](http://talk2me.jchuc.me)
 
 Talk to me is a real time web chat app.  
 
