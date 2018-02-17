@@ -24,7 +24,6 @@ class MessageDisplay extends React.Component {
   componentDidMount() {
     this.props.socket.on('chat message', (msg) => {
       let { messages } = this.state;
-      debugger;
       if ((messages.length > 0) && (msg.username === messages[messages.length - 1].username) && (!messages[messages.length - 1].status))  {
         msg = {
           continues: true,
