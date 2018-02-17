@@ -291,3 +291,22 @@
     }
   }
 }
+
+.logoLinks {
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  display: flex;
+  font-size: 50px;
+  width: 100px;
+  justify-content: space-between;
+  a {
+    svg {
+      color: white;
+      transition: ease-in-out 0.3s;
+      &:hover {
+        color: rgb(185, 185, 185);
+      }
+    }
+  }
+}
