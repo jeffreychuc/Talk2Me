@@ -10,6 +10,9 @@
     "prod": "NODE_ENV=production node server.js",
     "postinstall": "webpack -p"
   },
+  "engines": {
+    "node": "9.5.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
