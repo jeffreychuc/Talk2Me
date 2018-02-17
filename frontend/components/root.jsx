@@ -35,14 +35,14 @@ class Root extends React.Component {
     this.setState({ socketHash });
   }
 
-  addChatInstance() {
+  addChatInstance(classAddon='') {
     // let { socketArray } = this.state;
     // socketArray.push(this.renderChatInstance(io(), socketArray.length));
     // this.setState({ socketArray });
     let { socketHash } = this.state;
     let socket = io();
     let id = shortid();
-    socketHash[id] = this.renderChatInstance(socket, id);
+    socketHash[id] = this.renderChatInstance(socket, id, classAddon);
     this.setState({ socketHash })
   }
 
@@ -60,13 +60,14 @@ class Root extends React.Component {
     })
   }
 
-  renderChatInstance(socket, i) {
+  renderChatInstance(socket, id, classAddon) {
+    let className = "box no-cursor " + classAddon;
     return (
       <Draggable key={shortid()} handle="strong" >
-        <div className="box no-cursor" onClick={() => this.setZIndex(i)} ref={(el) => { this.windowRefs[i] = el; }} >
+        <div className={className} onClick={() => this.setZIndex(id)} ref={(el) => { this.windowRefs[id] = el; }} >
           <strong className="cursor">
             <div className='topBar' >
-              <button onClick={() => this.removeChatInstance(socket, i)}>
+              <button onClick={() => this.removeChatInstance(socket, id)}>
                 <i className="fas fa-times" />
               </button>
             </div>
@@ -82,7 +83,7 @@ class Root extends React.Component {
     return (
       <div>
         <div className='addChatWindowButton'>
-          <button onClick={() => this.addChatInstance()}> add chat window </button>
+          <button onClick={() => this.addChatInstance('new')}> add chat window </button>
         </div>
         <div className='mainChats'>
           {Object.keys(socketHash).map((key) => socketHash[key])}

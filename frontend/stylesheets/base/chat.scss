@@ -20,7 +20,6 @@ ul li {
     font-size: 60px;
     margin-bottom: 40px;
     text-align: center;
-    line-height: 1.2;
     font-weight: bolder;
     color: #3fefad;
     -webkit-user-select: none; /* Safari */        
@@ -28,22 +27,22 @@ ul li {
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
     span {
-      letter-spacing: 6px;
+      letter-spacing: 5px;
       color: gray;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: normal;
     }
   }
 
   .userRegistrationErrors {
-    position: absolute;
-    bottom: 100px;
-    left: 170px;
+    position: relative;
+    height: 30px;
     color: red;
     ul {
+      padding: 0;
       list-style: none;
       text-align: center;
-      margin: auto;
+      margin-top: 20px;
     }
   }
 
@@ -55,7 +54,7 @@ ul li {
           border-radius: 6px;
           border: 1px solid transparent;
           text-align: center;
-          cursor: pointer;
+          cursor: text;
           color: rgb(119, 119, 119);
         }
         input:hover {
@@ -80,6 +79,9 @@ ul li {
   &.active {
     z-index: 99;
   }
+  &.new {
+    position: absolute;
+  }
 }
 .addChatWindowButton {
   position: absolute;
@@ -90,20 +92,20 @@ ul li {
     border-radius: 6px;
     width: auto;
     color: gray;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
     padding: 20px 50px;
     cursor: pointer;
     transition-duration: 0.3s;
     transition-property: transform;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    border: 0px transparent;  
   }
 
   button:hover {
     color: rgb(109, 231, 230);
     transform: scale(1.03);
   }
-
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 .mainChats {
@@ -119,7 +121,7 @@ ul li {
 
 }
 
-$chatWidth: 600px;
+$chatWidth: 450px;
 
 .topBar{
   width: $chatWidth;
@@ -150,7 +152,7 @@ $chatWidth: 600px;
 
 .chatContainer  {
   // border: 1px black solid;
-  height: 500px;
+  height: 400px;
   width: $chatWidth;
   min-height: 300px;
   min-width: 250px;
@@ -173,7 +175,8 @@ $chatWidth: 600px;
 
       .disconnectMessage {
         color: gray;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
+        margin-top: 10px;
         font-size: 13px;
       }
 
@@ -204,17 +207,18 @@ $chatWidth: 600px;
         display: flex;
         margin-top: 10px;
         color: dimgrey;
-
+        font-size: 13px;
         .messageBody {
           display: flex;
           flex-direction: column;
+          font-size: 13px;
           .username {
             font-weight: bold;
             display: flex;
-            padding-bottom: 6px;
-
+            margin-bottom: 10px;
+            font-size: 14px;
             .timestamp {
-              font-size: 13px;
+              font-size: 11px;
               font-weight: lighter;
               color: #8c8c8c;
               margin-top: 3px;
@@ -242,7 +246,6 @@ $chatWidth: 600px;
                 font-weight: lighter;
                 color: #8c8c8c;
                 margin-top: 3px;
-                margin-right: 8px;
               }
             }
           }
@@ -303,15 +306,16 @@ $chatWidth: 600px;
     
     .loggedInStatus {
       height: 18px;
-      font-size: 13px;
+      font-size: 11px;
       color: #928c8c;
     }
 
     .nowTyping  {
       height: 30px;
       color: gray;
-      font-size: 15px;
+      font-size: 10px;
       margin-top: 5px;
+      margin-bottom: 5px;
     }
   }
 }
@@ -327,9 +331,12 @@ $chatWidth: 600px;
   a {
     svg {
       color: white;
-      transition: ease-in-out 0.3s;
+      // transition: ease-in-out 0.3s;
+      transition-duration: 0.3s;
+      transition-property: transform;
       &:hover {
-        color: rgb(185, 185, 185);
+        // color: rgb(185, 185, 185);
+        transform: scale(1.07);
       }
     }
   }
