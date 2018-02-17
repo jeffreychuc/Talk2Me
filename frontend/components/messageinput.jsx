@@ -22,7 +22,7 @@ class MessageInput extends React.Component {
     
     clearTimeout(this.handleTypeingID);
     this.props.socket.emit('now typing', {username: this.props.username});
-    this.handleTypeingID = setTimeout(() => this.props.socket.emit('stopped typing', {username: this.props.username}), 4000);
+    this.handleTypeingID = setTimeout(() => this.props.socket.emit('stopped typing', {username: this.props.username}), 2000);
     
     this.setState({ messageText: e.currentTarget.value });
   }
