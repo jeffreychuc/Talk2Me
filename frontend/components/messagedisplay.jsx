@@ -24,12 +24,26 @@ class MessageDisplay extends React.Component {
   componentDidMount() {
     this.props.socket.on('chat message', (msg) => {
       let { messages } = this.state;
-      if ((messages.length > 0) && (msg.username === messages[messages.length - 1].username) && (!messages[messages.length - 1].status))  {
+      
+      const messageExists = (messages.length > 0);
+      
+      let messageAuthorContinues;
+      let messageDoesNotHaveStatus;
+      if (messageExists) {
+        messageAuthorContinues = (msg.username === messages[messages.length - 1].username);
+        messageDoesNotHaveStatus = (!messages[messages.length - 1].status);
+      }
+      else {
+        messageAuthorContinues = false;
+        messageDoesNotHaveStatus = false;
+      }
+
+      if (messageExists && messageAuthorContinues && messageDoesNotHaveStatus) {
         msg = {
           continues: true,
           message: msg.message,
           username: msg.username
-        }
+        };
       }
       messages.push(msg);
       this.setState({ messages });
@@ -75,7 +89,7 @@ class MessageDisplay extends React.Component {
     
     // console.log(Object.keys(this.props.avatars), 'avatarsss');
     return (
-      <div className='messageDisplay' ref={(el) => this.messagesContainer = el} >
+      <div className='messageDisplay' ref={(el) => {this.messagesContainer = el;}} >
         <ul>
           {this.welcomeMessage()}
           {messages.map((message) => {
