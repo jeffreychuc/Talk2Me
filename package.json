@@ -35,6 +35,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-draggable": "^3.0.5",
+    "react-file-reader": "^1.1.4",
     "sass-loader": "^6.0.6",
     "shortid": "^2.2.8",
     "socket.io": "^2.0.4",

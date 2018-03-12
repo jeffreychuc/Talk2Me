@@ -116,7 +116,7 @@ class MessageDisplay extends React.Component {
               <Message
                 username={this.props.username}
                 avatar={this.props.avatars[message.username]}
-                key={shortid()} 
+                key={shortid()}
                 message={message}
               />
             )
